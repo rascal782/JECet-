@@ -84,7 +84,7 @@ void ev3_cyc_tracer(intptr_t exinf) {
  */
 void main_task(intptr_t unused) {
     user_system_create();  // センサやモータの初期化処理
-
+    syslog
     // 周期ハンドラ開始
     ev3_sta_cyc(EV3_CYC_TRACER);
 

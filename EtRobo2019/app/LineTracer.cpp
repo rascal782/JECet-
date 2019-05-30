@@ -29,6 +29,8 @@ void LineTracer::run() {
         mIsInitialized = true;
     }
 
+    syslog(LOG_NOTICE, "TAIL: %3d\r", mIsInitialized);
+
     bool isOnLine = mLineMonitor->isOnLine();
 
     // 走行体の向きを計算する
