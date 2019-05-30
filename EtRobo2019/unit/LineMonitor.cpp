@@ -43,3 +43,7 @@ bool LineMonitor::isOnLine() const {
 void LineMonitor::setThreshold(int8_t threshold) {
     mThreshold = threshold;
 }
+
+void LineMonitor::getThreshold(){
+    return mThreshold;
+}
