@@ -18,12 +18,14 @@ public:
 
     bool isOnLine() const;
     void setThreshold(int8_t threshold);
+    int getThreshold();
 
 private:
     static const int8_t INITIAL_THRESHOLD;
 
     const ev3api::ColorSensor& mColorSensor;
     int8_t mThreshold;
+
 };
 
 #endif  // EV3_UNIT_LINEMONITOR_H_
