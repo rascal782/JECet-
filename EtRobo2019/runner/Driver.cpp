@@ -42,7 +42,6 @@ void Driver::start() {
  */
 void Driver::exec() {
     // TODO この処理は新たに作成するコースクラスで実装
-    syslog(LOG_NOTICE, "TIME %d\r", clock->now() - beforeClock);
     if (courseChange()) {
         courseNumber++;
         runner->setGyroOffset(mCourse[courseNumber].getGyroOffset());

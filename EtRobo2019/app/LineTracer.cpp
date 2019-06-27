@@ -29,7 +29,6 @@ void LineTracer::run() {
         mIsInitialized = true;
     }
 
-    syslog(LOG_NOTICE, "TAIL: %3d\r", mIsInitialized);
 
     bool isOnLine = mLineMonitor->isOnLine();
 
