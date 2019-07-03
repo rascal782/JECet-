@@ -1,16 +1,15 @@
-/**
- ******************************************************************************
- ** ファイル名 : app.cpp
- **
- ** 概要 : 2輪倒立振子ライントレースロボットのTOPPERS/HRP2用C++サンプルプログラム
- **
- ** 注記 : sample_cpp (ライントレース/尻尾モータ/超音波センサ/リモートスタート)
- ******************************************************************************
- **/
+/******************************************************************************
+ *  app.cpp (for LEGO Mindstorms EV3)
+ *  Created on: 2015/01/25
+ *  Implementation of the Task main_task
+ *  Author: Kazuhiro.Kawachi
+ *  Copyright (c) 2015 Embedded Technology Software Design Robot Contest
+ *****************************************************************************/
 
 #include "ev3api.h"
 #include "app.h"
-
+// デストラクタ問題の回避
+// https://github.com/ETrobocon/etroboEV3/wiki/problem_and_coping
 #include "runner/Driver.h"
 
 #define DEBUG
@@ -25,10 +24,9 @@ Driver* driver;
 
 /**
  * メインタスク
- * @param unused 拡張情報
+ *　@param unused 拡張情報
  */
-void mainTask(intptr_t unused)
-{
+void mainTask(intptr_t unused){
     char buf[64];
     driver = new Driver();
 
@@ -36,11 +34,10 @@ void mainTask(intptr_t unused)
 
     driver->start();
 
-    ER er = ev3_sta_cyc(CYC_HANDLER);   //周期ハンドラを起動
-    sprintf(buf, "main_task: error_code=%d", MERCD(er) );   // APIのエラーコードの表示の仕方です。
+    ER er = ev3_sta_cyc(CYC_HANDLER);
+    sprintf(buf, "main_task: error_code=%d",MERCD(er))
 
     slp_tsk();
-
     ext_tsk();
 }
 
@@ -48,29 +45,18 @@ void mainTask(intptr_t unused)
  * コントロールタスク
  * @param unused 拡張情報
  */
-void controllerTask(intptr_t unused)
-{
+void controllerTask(intptr_t unused){
     driver->exec();
-}
-
-/**
- * 周期ハンドラ(4ms)
- * @param unused 拡張情報
- */
-void cycHandler(intptr_t unused)
-{
-    act_tsk(CONTROLLER_TASK);
 }
 
 /**
  * BTタスク
  * @param unused 拡張情報
- * @comment Bluetooth通信によるリモートスタート。 Tera Termなどのターミナルソフトから、
- *          ASCIIコードで1を送信すると、リモートスタートする。
+ * `comment Blutppth通信によるリモートスタート。Tera Termなどのターミナルソフトから、ASCIIコードで1を送信すると、リモートスタートする。
  */
-void btTask(intptr_t unused)
-{
-    while(1) {
+
+void btTask(intptr_t unused){
+    while(1){
         driver->btUpdate();
     }
 }
