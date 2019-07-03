@@ -11,11 +11,19 @@ void Databank::openLogFile(){
 	char buf[12];
 	int i=1;
 
-	do{
-		snprintf(buf,12,"%s%d%s","log",i,".csv");
+	while(true){
+		snprintf(buf,12,"%s%d%s","logdata/log",i,".csv");
 		logfp = fopen(buf,"r");
+
+		if(logfp == NULL){
+			break;
+		}
+
+		fclose(logfp);
 		i++;
-	}while(logfp != NULL);
+	}
+
+
 
 	logfp = fopen(buf,"w");
 	//logfp = fopen("log.csv","w");
@@ -25,7 +33,7 @@ void Databank::openLogFile(){
 
 /*
 **ファイルにデータを書き出す
-**時間,走行距離,R,G,B,RGB合計値,自然RGB合計値,ジャイロ角位置,ジャイロ角速度
+**時間,走行距離,R,G,B,RGB合計値,自然RGB合計値
 */
 //int ang,int angv
 void Databank::writeLogFile(int time,int rundis,int r,int g,int b,int rgb,int nrgb){
