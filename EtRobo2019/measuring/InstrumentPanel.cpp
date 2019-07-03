@@ -168,3 +168,21 @@ int InstrumentPanel::getGyroImpact() {
 int InstrumentPanel::getSonarDis() {
     return sonarDistance->getSonarDis();
 }
+
+
+/*ゲッター*/
+int InstrumentPanel::getRed(){
+    return color->getRed();
+}
+
+int InstrumentPanel::getGreen(){
+    return color->getGreen();
+}
+
+int InstrumentPanel::getBrue(){
+    return color->getBrue();
+}
+
+int InstrumentPanel::getNaturalTotalRGB(){
+    return color->getNaturalTotalRGB();
+}

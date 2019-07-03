@@ -14,6 +14,7 @@
 Runner::Runner() {
     cm = new ControlManager();
     inspanel = new InstrumentPanel();
+
     databank = new Databank();
 }
 
@@ -135,6 +136,7 @@ void Runner::setGyroOffset(int gyroOffset) {
 }
 
 /**
+
  *走行情報記録
  */
 void Runner::recordLog(int time){
