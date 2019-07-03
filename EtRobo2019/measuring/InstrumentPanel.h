@@ -23,6 +23,7 @@ private:
     RunningDistance* runDistance;
     SonarDistance* sonarDistance;
     ImpactSensor* impactSensor;
+
     int white;  /* 目標RGB値計算用 白 */
     int black;  /* 目標RGB値計算用 黒 */
 
@@ -42,5 +43,9 @@ public:
     int getGyroImpact();
     void setBtCmd(int mBtCmd);
     int getSonarDis();
+    int getRed();
+    int getGreen();
+    int getBrue();
+    int getNaturalTotalRGB();
 };
 #endif  // MEASURING_INSTRUMENT_PANEL_H

@@ -14,6 +14,7 @@
 Runner::Runner() {
     cm = new ControlManager();
     inspanel = new InstrumentPanel();
+    databank = new Databank();
 }
 
 /**
@@ -30,6 +31,7 @@ void Runner::start(int forward, int turn, int tailAngle) {
 
         if (tailTMP != 0) {
             tailAngle += tailTMP;
+            syslog(LOG_NOTICE, "TAIL: %3d\r", tailAngle);
         }
 
         cm->running(forward, turn, tailAngle);
@@ -43,6 +45,7 @@ void Runner::start(int forward, int turn, int tailAngle) {
     cm->gyroInit();
     cm->wheelInit();
     cm->balancerInit();
+    databank->openLogFile();
 }
 
 /**
@@ -132,6 +135,24 @@ void Runner::setGyroOffset(int gyroOffset) {
 }
 
 /**
+ *走行情報記録
+ */
+void Runner::recordLog(int time){
+    databank->writeLogFile(
+        time,
+        inspanel->getRunDistance(),
+        inspanel->getRed(),
+        inspanel->getGreen(),
+        inspanel->getBrue(),
+        inspanel->getTotalRGB(),
+        inspanel->getNaturalTotalRGB()
+        //cm->getAngle(),
+        //cm->getAnglerVelocity()
+        );
+}
+
+
+/**
  * 停止
  */
 void Runner::stop() {
@@ -140,4 +161,5 @@ void Runner::stop() {
     ev3_stp_cyc(CYC_HANDLER);
     cm->stop();
     inspanel->stop();
+    databank->closeLogFile();
 }

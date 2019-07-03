@@ -12,12 +12,14 @@
 #include "ev3api.h"
 #include "../control/ControlManager.h"
 #include "../measuring/InstrumentPanel.h"
+#include "Databank.h"
 
 class Runner
 {
 private:
     ControlManager* cm;
     InstrumentPanel* inspanel;
+    Databank* databank;
     int style = 0;
     int lookupLine = 0;
     int lookupLineC = 0;
@@ -36,6 +38,7 @@ public:
     void setPID(float kp, float ki, float kd);
     void setStyle(int style);
     void setGyroOffset(int gyroOffset);
+    void recordLog(int time);
     void stop();
 };
 #endif  // RUNNER_RUNNER_H

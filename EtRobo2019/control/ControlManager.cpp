@@ -140,3 +140,16 @@ float ControlManager::getKRGB(int tailAngle) {
     }
     return (102.0F + ((-3.8F) * diff) + (0.038F * diff * diff)) / 100.0F;
 }
+<<<<<<< HEAD
+=======
+
+/*ジャイロセンサの角位置*/
+int ControlManager::getAngle(){
+    return gyroSensor->getAngle();
+}
+
+/*ジャイロセンサの角速度*/
+int ControlManager::getAnglerVelocity(){
+    return gyroSensor->getAnglerVelocity();
+}
+>>>>>>> rascal
