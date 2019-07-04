@@ -32,7 +32,6 @@ void Runner::start(int forward, int turn, int tailAngle) {
 
         if (tailTMP != 0) {
             tailAngle += tailTMP;
-            syslog(LOG_NOTICE, "TAIL: %3d\r", tailAngle);
         }
 
         cm->running(forward, turn, tailAngle);

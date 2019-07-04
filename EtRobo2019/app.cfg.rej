@@ -1,0 +1,9 @@
+diff a/EtRobo2019/app.cfg b/EtRobo2019/app.cfg	(rejected hunks)
+@@ -3,6 +3,7 @@
+ #include "app.h"
+ 
+ DOMAIN(TDOM_APP) {
++ /* メインタスク */
+     CRE_TSK(MAIN_TASK, { TA_ACT, 0, mainTask, TMIN_APP_TPRI + 2, STACK_SIZE, NULL });
+ 
+     /* Bluetoothタスク */
