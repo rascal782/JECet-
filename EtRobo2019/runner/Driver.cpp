@@ -54,7 +54,13 @@ void Driver::exec() {
     if ((mCourse[courseNumber].getDis() + mCourse[courseNumber].getTime() + mCourse[courseNumber].getImpact() + mCourse[courseNumber].getSonarDis()) == 0) {
         runner->stop();
     }
-    runner->recordLog(clock->now());
+
+    if(clock->now() - logBeforeClock >= 50){
+        runner->recordLog(clock->now());
+        logBeforeClock = clock->now();
+    }
+
+
 }
 
 /**

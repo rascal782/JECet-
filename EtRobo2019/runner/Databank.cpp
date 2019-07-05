@@ -8,11 +8,11 @@ Databank::Databank(){};
 */
 void Databank::openLogFile(){
 
-	char buf[12];
+	char buf[30];
 	int i=1;
 
 	while(true){
-		snprintf(buf,12,"%s%d%s","logdata/log",i,".csv");
+		snprintf(buf,30,"%s%d%s","logdata/log",i,".csv");
 		logfp = fopen(buf,"r");
 
 		if(logfp == NULL){
@@ -28,7 +28,7 @@ void Databank::openLogFile(){
 	logfp = fopen(buf,"w");
 	//logfp = fopen("log.csv","w");
 	//fprintf(logfp, "TIME,RUNDIS,R,G,B,RGB,NRGB,ANG,ANGV\n");
-	fprintf(logfp, "TIME,RUNDIS,R,G,B,RGB,NRGB\n");
+	fprintf(logfp, "TIME,RUNDIS,R,G,B,RGB,NRGB,ANGV\n");
 }
 
 /*
@@ -36,10 +36,10 @@ void Databank::openLogFile(){
 **時間,走行距離,R,G,B,RGB合計値,自然RGB合計値
 */
 //int ang,int angv
-void Databank::writeLogFile(int time,int rundis,int r,int g,int b,int rgb,int nrgb){
+void Databank::writeLogFile(int time,int rundis,int r,int g,int b,int rgb,int nrgb,int angv){
 
 	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
-	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb);
+	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,angv);
 }
 
 /*

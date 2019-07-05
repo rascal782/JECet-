@@ -147,9 +147,9 @@ void Runner::recordLog(int time){
         inspanel->getGreen(),
         inspanel->getBrue(),
         inspanel->getTotalRGB(),
-        inspanel->getNaturalTotalRGB()
+        inspanel->getNaturalTotalRGB(),
         //cm->getAngle(),
-        //cm->getAnglerVelocity()
+        cm->getAnglerVelocity()
         );
 }
 
