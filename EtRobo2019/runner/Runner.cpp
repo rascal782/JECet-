@@ -58,11 +58,11 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
     inspanel->update();
 
     int totalRGB = inspanel->getTotalRGB() / krgb;
-    if (style == 1) {
-        cm->running(forward, turn, tailAngle, totalRGB);
+    if (style == 9) {
+        cm->noBalanceRun(forward, turn, tailAngle, totalRGB);
     }
     else {
-        cm->noBalanceRun(forward, turn, tailAngle, totalRGB);
+        cm->running(forward, turn, tailAngle, totalRGB);
     }
     if (totalRGB <= 7 || inspanel->getBtCmd() == 6) {
         stop();

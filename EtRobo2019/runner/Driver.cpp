@@ -30,7 +30,7 @@ void Driver::start() {
     else if (runner->getBtCmd() == 2) {
         mCourse = rCourse;
     }
-    else {
+    else if (runner->getBtCmd() == 3) {
         mCourse = dCourse;
     }
     beforeDistance = runner->getDistance();
@@ -61,36 +61,43 @@ void Driver::exec() {
  * 区間変更条件確認
  * @param changeCnt 変更情報
  */
-int Driver::courseChange() {
-    int changeCnt = 0;
-    if (mCourse[courseNumber].getDis() != 0) {
-        int tmpDis = runner->getDistance() - beforeDistance;
-        if (tmpDis < 0) {
-            tmpDis = tmpDis * (-1);
-        }
-        if (tmpDis >= mCourse[courseNumber].getDis()) {
-            changeCnt = 1;
-        }
+bool Driver::courseChange() {
+    bool changeCnt =false;
+    //syslog(LOG_NOTICE, "%d", courseNumber);
+    switch(mCourse[courseNumber].getTrans()){
+        case 0:
+            if ( mCourse[courseNumber].getTime() != 0) {
+                if ((int)(clock->now() - beforeClock) >= mCourse[courseNumber].getTime()) {
+                    changeCnt = true;
+                }
+            }
+            break;
+        case 1:
+            if (mCourse[courseNumber].getDis() != 0) {
+                int tmpDis = runner->getDistance() - beforeDistance;
+                if (tmpDis < 0) {
+                    tmpDis = tmpDis * (-1);
+                }
+                if (tmpDis >= mCourse[courseNumber].getDis()) {
+                    changeCnt = true;
+                }
+            }
+            break;
+        case 2:
+            if (mCourse[courseNumber].getImpact() != 0) {
+                if (runner->getGyroImpact() <= mCourse[courseNumber].getImpact()) {
+                    changeCnt = true;
+                }
+            }
+            break;
+        case 3:
+             if (mCourse[courseNumber].getSonarDis() != 0) {
+                if (runner->getSonarDis() <= mCourse[courseNumber].getSonarDis()) {
+                    changeCnt = true;
+                }
+            }
+            break;
     }
-
-    if (mCourse[courseNumber].getTime() != 0) {
-        if ((int)(clock->now() - beforeClock) >= mCourse[courseNumber].getTime()) {
-            changeCnt = 1;
-        }
-    }
-
-    if (mCourse[courseNumber].getImpact() != 0) {
-        if (runner->getGyroImpact() <= mCourse[courseNumber].getImpact()) {
-            changeCnt = 1;
-        }
-    }
-
-    if (mCourse[courseNumber].getSonarDis() != 0) {
-        if (runner->getSonarDis() <= mCourse[courseNumber].getSonarDis()) {
-            changeCnt = 1;
-        }
-    }
-
     return changeCnt;
 }
 
