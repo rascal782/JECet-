@@ -135,11 +135,13 @@ void Runner::setGyroOffset(int gyroOffset) {
     cm->setGyroOffset(gyroOffset);
 }
 
-/**
 
+/*
  *走行情報記録
- */
+ *
+*/
 void Runner::recordLog(int time){
+    
     databank->writeLogFile(
         time,
         inspanel->getRunDistance(),
@@ -148,7 +150,6 @@ void Runner::recordLog(int time){
         inspanel->getBrue(),
         inspanel->getTotalRGB(),
         inspanel->getNaturalTotalRGB(),
-        //cm->getAngle(),
         cm->getAnglerVelocity()
         );
 }
