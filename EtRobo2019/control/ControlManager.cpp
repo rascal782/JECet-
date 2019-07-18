@@ -141,10 +141,13 @@ float ControlManager::getKRGB(int tailAngle) {
     return (102.0F + ((-3.8F) * diff) + (0.038F * diff * diff)) / 100.0F;
 }
 
-/*ジャイロセンサの角位置*/
+
+/*ジャイロセンサの角位置
+不具合が出たので使用しない
 int ControlManager::getAngle(){
     return gyroSensor->getAngle();
 }
+*/
 
 /*ジャイロセンサの角速度*/
 int ControlManager::getAnglerVelocity(){

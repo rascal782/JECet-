@@ -26,12 +26,15 @@ void Driver::start() {
     // TODO ここの処理は新たに作成するコースクラスで実装
     if (runner->getBtCmd() == 1) {
         mCourse = lCourse;
+        //loadCourse('l');
     }
     else if (runner->getBtCmd() == 2) {
         mCourse = rCourse;
+        //loadCourse('r');
     }
     else if (runner->getBtCmd() == 3) {
         mCourse = dCourse;
+        //loadCourse('d');
     }
     beforeDistance = runner->getDistance();
     beforeClock = clock->now();
@@ -54,7 +57,13 @@ void Driver::exec() {
     if ((mCourse[courseNumber].getDis() + mCourse[courseNumber].getTime() + mCourse[courseNumber].getImpact() + mCourse[courseNumber].getSonarDis()) == 0) {
         runner->stop();
     }
-    runner->recordLog(clock->now());
+
+    if(clock->now() - logBeforeClock >= 50){
+        runner->recordLog(clock->now());
+        logBeforeClock = clock->now();
+    }
+
+
 }
 
 /**
@@ -107,3 +116,22 @@ bool Driver::courseChange() {
 void Driver::btUpdate() {
     runner->btUpdate();
 }
+
+/**
+*コース情報読み出し
+*/
+/*
+void Driver::loadCourse(int mode){
+    char buf;
+    switch(mode){
+        case 1:
+        break;
+
+        case 2:
+        break;
+
+        default:
+        break;
+    }
+}
+*/
