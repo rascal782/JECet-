@@ -25,6 +25,7 @@ private:
     int lookupLineC = 0;
     int seesawLine = 0;
     int distanceTmp = 0;
+    int course = 0;
 
 public:
     Runner();
@@ -38,6 +39,7 @@ public:
     void setPID(float kp, float ki, float kd);
     void setStyle(int style);
     void setGyroOffset(int gyroOffset);
+    void setCourse(int course);
     void recordLog(int time);
     void stop();
 };

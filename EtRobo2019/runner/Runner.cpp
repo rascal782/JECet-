@@ -59,7 +59,13 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
 
     int totalRGB = inspanel->getTotalRGB() / krgb;
     if (style == 1) {
-        cm->runningR(forward, turn, tailAngle, totalRGB);
+        if (course == 0)
+        {
+            cm->runningR(forward, turn, tailAngle, totalRGB);
+        }else{
+            cm->runningL(forward, turn, tailAngle, totalRGB);
+        }
+        
     }
     else {
         cm->noBalanceRun(forward, turn, tailAngle, totalRGB);
@@ -124,6 +130,14 @@ void Runner::setPID(float kp, float ki, float kd) {
  */
 void Runner::setStyle(int style) {
     this->style = style;
+}
+
+/**
+ * 走行コース選択
+ * @return Course
+ */
+void Runner::setCourse(int course) {
+    this->course=course;
 }
 
 /**
