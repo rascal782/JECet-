@@ -59,11 +59,14 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
 
     int totalRGB = inspanel->getTotalRGB() / krgb;
     if (style == 1) {
+        //syslog(LOG_NOTICE, "course:%d\n", course);
         if (course == 0)
         {
             cm->runningR(forward, turn, tailAngle, totalRGB);
+            syslog(LOG_NOTICE, "courseR:%d\n,%d\n,%d\n,%d\n,%d\n", course,forward, turn, tailAngle, totalRGB);
         }else{
             cm->runningL(forward, turn, tailAngle, totalRGB);
+            syslog(LOG_NOTICE, "courseL:%d\n,%d\n,%d\n,%d\n,%d\n", course,forward, turn, tailAngle, totalRGB);
         }
         
     }

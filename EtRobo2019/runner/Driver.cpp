@@ -30,7 +30,7 @@ void Driver::start() {
     }
     else if (runner->getBtCmd() == 2) {
         mCourse = rCourse;
-        runner->setCourse(2);
+        runner->setCourse(1);
     }
     else {
         mCourse = dCourse;
