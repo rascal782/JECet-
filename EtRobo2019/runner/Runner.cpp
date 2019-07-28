@@ -14,7 +14,6 @@
 Runner::Runner() {
     cm = new ControlManager();
     inspanel = new InstrumentPanel();
-
     databank = new Databank();
 }
 
@@ -150,8 +149,12 @@ void Runner::recordLog(int time){
         inspanel->getBrue(),
         inspanel->getTotalRGB(),
         inspanel->getNaturalTotalRGB(),
-        cm->getAnglerVelocity()
+        cm->getTargetRgb(),
+        cm->getAnglerVelocity(),
+        cm->getPwmLeft(),
+        cm->getPwmRight()
         );
+    syslog(LOG_NOTICE, "RUNDIS: %d\r", inspanel->getRunDistance());
 }
 
 

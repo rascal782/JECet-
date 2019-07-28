@@ -1,3 +1,11 @@
+/**
+ ******************************************************************************
+ ** ファイル名 : Databank.cpp
+ ** クラス名   : Databank
+ **
+ ** 概要 : 走行情報を記録するクラス
+ ******************************************************************************
+ **/
 #include "Databank.h"
 
 Databank::Databank(){};
@@ -8,35 +16,57 @@ Databank::Databank(){};
 */
 void Databank::openLogFile(){
 
-	char buf[30];
-	int i=1;
-
+	char buf[20];//文字列バッファ
 	
-	while(1){
-		snprintf(buf,30,"%s%d%s","logdata/log",i,".csv");
-		logfp = fopen(buf,"r");
+	for(int i = 1; i <= 10 ; i++){
+		snprintf(buf,20,"%s%d%s","logdata/log",i,".csv");//文字列結合
+		logfp = fopen(buf,"r");//ファイルオープン（読み取りモード）
 
-		if(logfp == NULL){
+		if(logfp == NULL){//ファイルが存在するか
 			fclose(logfp);
-			break;
+			break;//存在しなければbreak
 		}
 
 		fclose(logfp);
-		i++;
 	}
 	
 
-	logfp = fopen(buf,"w");
-	fprintf(logfp, "TIME,RUNDIS,R,G,B,RGB,NRGB,ANGV\n");
+	logfp = fopen(buf,"w");//ファイル作成（書き込みモード）
+
+	//各列名
+	fprintf(logfp, "TIME,RUNDIS,R,G,B,RGB,NRGB,TRGB,ANGV,LPWM,RPWM\n");
 }
 
 /*
 **ファイルにデータを書き出す
 **時間,走行距離,R,G,B,RGB合計値,自然RGB合計値
 */
-void Databank::writeLogFile(int time,int rundis,int r,int g,int b,int rgb,int nrgb,int angv){
+void Databank::writeLogFile(int time,
+							int rundis,
+							int r,
+							int g,
+							int b,
+							int rgb,
+							int nrgb,
+							int trgb,
+							int angv,
+							int lpwm,
+							int rpwm
+							)
+{
 	
-	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,angv);
+	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
+		time,
+		rundis,
+		r,
+		g,
+		b,
+		rgb,
+		nrgb,
+		trgb,
+		angv,
+		lpwm,
+		rpwm);
 }
 
 /*
