@@ -39,6 +39,11 @@ void Databank::writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistan
 	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
 	fprintf(logfp, "%d,%d,%d,%d,%d\n",time,rundis,rgb,nrgb,RunDistance);
 }
+void Databank::writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance, int space){
+
+	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
+	fprintf(logfp, "%d,%d,%d,%d,%d,%d\n",time,rundis,rgb,nrgb,RunDistance,space);	
+}
 
 
 /*

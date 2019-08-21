@@ -32,6 +32,7 @@ void Runner::start(int forward, int turn, int tailAngle) {
 
         if (tailTMP != 0) {
             tailAngle += tailTMP;
+            syslog(LOG_NOTICE, "TAIL: %3d\r", tailAngle);
         }
 
         cm->running(forward, turn, tailAngle);
@@ -55,7 +56,7 @@ void Runner::start(int forward, int turn, int tailAngle) {
  * @param tailAngle  尻尾角度
  */
 void Runner::run(int forward, int turn, int tailAngle, float krgb) {
-    inspanel->update();
+    space = inspanel->update();
 
     int totalRGB = inspanel->getTotalRGB() / krgb;
     if (style == 1) {
@@ -173,7 +174,7 @@ void Runner::recordLog(int time){
         //cm->getAngle(),
         //cm->getAnglerVelocity()
         inspanel->getRunDistance()
-        
+        ,space
         );
 }
 

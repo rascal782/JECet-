@@ -16,14 +16,14 @@ using namespace ev3api;
 class MotorControl
 {
 private:
-    Motor* leftMotor;
-    Motor* rightMotor;
+    Motor* XMotor;
+    Motor* YMotor;
 
 public:
     MotorControl();
     void init();
-    int32_t getLMotorAngle();
-    int32_t getRMotorAngle();
+    int32_t getXMotorAngle();
+    int32_t getYMotorAngle();
     void setPWM(int8_t pwmL, int8_t pwmR);
     void stop();
     void setNoBalanceRun(int forward, int turn);

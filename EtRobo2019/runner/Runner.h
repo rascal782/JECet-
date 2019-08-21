@@ -26,6 +26,7 @@ private:
     int seesawLine = 0;
     int distanceTmp = 0;
     int course = 0;
+    int space = 0;
 
 public:
     Runner();

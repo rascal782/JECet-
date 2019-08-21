@@ -67,7 +67,7 @@ void ControlManager::running(int forward, int turn, int tailAngle) {
 void ControlManager::runningR(int forward, int turn, int tailAngle, int totalRgb) {
     turn = motorPid->calcControl(totalRgb - targetRgb) + turn;
     balancer->setCommand(forward, turn);
-    balancer->update(gyroSensor->getAnglerVelocity(), mc->getRMotorAngle(), mc->getLMotorAngle(), (int)ev3_battery_voltage_mV());
+    balancer->update(gyroSensor->getAnglerVelocity(), mc->getYMotorAngle(), mc->getXMotorAngle(), (int)ev3_battery_voltage_mV());
     mc->setPWM(balancer->getPwmRight(), balancer->getPwmLeft());
     tc->setControl(tailAngle);
 }
@@ -83,7 +83,7 @@ void ControlManager::runningR(int forward, int turn, int tailAngle, int totalRgb
 void ControlManager::runningL(int forward, int turn, int tailAngle, int totalRgb) {
     turn = motorPid->calcControl(totalRgb - targetRgb) + turn;
     balancer->setCommand(forward, turn);
-    balancer->update(gyroSensor->getAnglerVelocity(), mc->getRMotorAngle(), mc->getLMotorAngle(), (int)ev3_battery_voltage_mV());
+    balancer->update(gyroSensor->getAnglerVelocity(), mc->getYMotorAngle(), mc->getXMotorAngle(), (int)ev3_battery_voltage_mV());
     mc->setPWM(balancer->getPwmLeft(), balancer->getPwmRight());
     tc->setControl(tailAngle);
 }
@@ -98,7 +98,7 @@ void ControlManager::noBalanceRun(int forward, int turn, int tailAngle, int tota
     float KRGB = getKRGB(tailAngle);
     turn = motorPid->calcControl(totalRgb - (targetRgb * KRGB)) + turn;
     balancer->setCommand(forward, turn);
-    balancer->update(gyroSensor->getAnglerVelocity(), mc->getRMotorAngle(), mc->getLMotorAngle(), (int)ev3_battery_voltage_mV());
+    balancer->update(gyroSensor->getAnglerVelocity(), mc->getYMotorAngle(), mc->getXMotorAngle(), (int)ev3_battery_voltage_mV());
     if (forward >= 0) {
         mc->setNoBalanceRun(forward, turn);
     }
