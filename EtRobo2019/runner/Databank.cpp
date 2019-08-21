@@ -14,6 +14,7 @@ void Databank::openLogFile(){
 	do{
 		snprintf(buf,12,"%s%d%s","log",i,".csv");
 		logfp = fopen(buf,"r");
+		fclose(logfp);
 		i++;
 	}while(logfp != NULL);
 
@@ -33,6 +34,12 @@ void Databank::writeLogFile(int time,int rundis,int r,int g,int b,int rgb,int nr
 	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
 	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb);
 }
+void Databank::writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance){
+
+	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
+	fprintf(logfp, "%d,%d,%d,%d,%d\n",time,rundis,rgb,nrgb,RunDistance);
+}
+
 
 /*
 **ファイルを閉じる

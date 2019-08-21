@@ -25,7 +25,7 @@ private:
     MotorControl* mc;
     TailControl* tc;
     PID* motorPid;
-    int targetRgb = 0; /* 目標RGB値 */
+    int targetRgb = 284; /* 目標RGB値 */
 
 public:
     ControlManager();

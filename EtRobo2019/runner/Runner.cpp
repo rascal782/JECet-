@@ -63,10 +63,8 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
         if (course == 0)
         {
             cm->runningL(forward, turn, tailAngle, totalRGB);
-            syslog(LOG_NOTICE, "courseR:%d\n,%d\n,%d\n,%d\n,%d\n", course,forward, turn, tailAngle, totalRGB);
         }else{
             cm->runningR(forward, turn, tailAngle, totalRGB);
-            syslog(LOG_NOTICE, "courseL:%d\n,%d\n,%d\n,%d\n,%d\n", course,forward, turn, tailAngle, totalRGB);
         }
         
     }
@@ -156,16 +154,26 @@ void Runner::setGyroOffset(int gyroOffset) {
  *走行情報記録
  */
 void Runner::recordLog(int time){
+    // databank->writeLogFile(
+    //     time,
+    //     inspanel->getRunDistance(),
+    //     inspanel->getRed(),
+    //     inspanel->getGreen(),
+    //     inspanel->getBrue(),
+    //     inspanel->getTotalRGB(),
+    //     inspanel->getNaturalTotalRGB()
+    //     //cm->getAngle(),
+    //     //cm->getAnglerVelocity()
+    //     );
     databank->writeLogFile(
         time,
         inspanel->getRunDistance(),
-        inspanel->getRed(),
-        inspanel->getGreen(),
-        inspanel->getBrue(),
         inspanel->getTotalRGB(),
-        inspanel->getNaturalTotalRGB()
+        inspanel->getNaturalTotalRGB(),
         //cm->getAngle(),
         //cm->getAnglerVelocity()
+        inspanel->getRunDistance()
+        
         );
 }
 

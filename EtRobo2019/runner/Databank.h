@@ -17,5 +17,7 @@ public:
 	Databank();
 	void openLogFile();
 	void writeLogFile(int time,int rundis,int r,int g,int b,int trgb,int ntrgb);
+	void writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance);
+
 	void closeLogFile();
 };

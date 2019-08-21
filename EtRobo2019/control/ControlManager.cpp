@@ -165,4 +165,3 @@ int ControlManager::getAngle(){
 int ControlManager::getAnglerVelocity(){
     return gyroSensor->getAnglerVelocity();
 }
-
