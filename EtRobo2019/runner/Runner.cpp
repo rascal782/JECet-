@@ -36,13 +36,12 @@ void Runner::start(int forward, int turn, int tailAngle) {
 
         cm->running(forward, turn, tailAngle);
 
-        this->setRecordFlag(this->getBtCmd());
-
         if (inspanel->pushButton()) {
             break;
         }
 
         cm->setTargetRgb(inspanel->pushColorButton());
+        this->setRecordFlag(this->getBtCmd());
     }
     cm->gyroInit();
     cm->wheelInit();
