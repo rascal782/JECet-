@@ -26,6 +26,7 @@ private:
     int seesawLine = 0;
     int distanceTmp = 0;
     bool recordFlag = false;
+    int course = 0;
 
 public:
     Runner();
@@ -41,6 +42,7 @@ public:
     void setStyle(int style);
     void setGyroOffset(int gyroOffset);
     void setRecordFlag(int mode);
+    void setCourse(int course);
     void recordLog(int time);
     void stop();
 };

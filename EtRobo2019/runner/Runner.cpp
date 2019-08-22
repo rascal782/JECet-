@@ -31,7 +31,6 @@ void Runner::start(int forward, int turn, int tailAngle) {
 
         if (tailTMP != 0) {
             tailAngle += tailTMP;
-            syslog(LOG_NOTICE, "TAIL: %3d\r", tailAngle);
         }
 
         cm->running(forward, turn, tailAngle);
@@ -60,7 +59,16 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
 
     int totalRGB = inspanel->getTotalRGB() / krgb;
     if (style == 1) {
-        cm->running(forward, turn, tailAngle, totalRGB);
+        //syslog(LOG_NOTICE, "course:%d\n", course);
+        if (course == 0)
+        {
+            cm->runningL(forward, turn, tailAngle, totalRGB);
+            syslog(LOG_NOTICE, "courseR:%d\n\r,%d\n\r,%d\n\r,%d\n\r,%d\n\r", course,forward, turn, tailAngle, totalRGB);
+        }else{
+            cm->runningR(forward, turn, tailAngle, totalRGB);
+            syslog(LOG_NOTICE, "courseL:%d\n\r,%d\n\r,%d\n\r,%d\n\r,%d\n\r", course,forward, turn, tailAngle, totalRGB);
+        }
+        
     }
     else {
         cm->noBalanceRun(forward, turn, tailAngle, totalRGB);
@@ -133,6 +141,14 @@ void Runner::setPID(float kp, float ki, float kd) {
  */
 void Runner::setStyle(int style) {
     this->style = style;
+}
+
+/**
+ * 走行コース選択
+ * @return Course
+ */
+void Runner::setCourse(int course) {
+    this->course=course;
 }
 
 /**

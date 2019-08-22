@@ -52,7 +52,7 @@ int PID::calcControl(int nowValue) {
 
     pControl = kp * diff[1];
     iControl = ki * integral;
-    dControl = kd * (diff[1] - diff[0]) / 4.0;
+    dControl = kd * ((diff[1] - diff[0])/4.0);
 
     total = pControl + iControl + dControl;
 
@@ -66,3 +66,4 @@ int PID::calcControl(int nowValue) {
 
     return static_cast<int>(total);
 }
+
