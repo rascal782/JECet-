@@ -21,7 +21,7 @@ void Databank::openLogFile(){
 	logfp = fopen(buf,"w");
 	//logfp = fopen("log.csv","w");
 	//fprintf(logfp, "TIME,RUNDIS,R,G,B,RGB,NRGB,ANG,ANGV\n");
-	fprintf(logfp, "TIME,RUNDIS,RGB,NRGB,RunDistance,MA,MV\n");
+	fprintf(logfp, "TIME,RUNDIS,RGB,NRGB,RunDistance,MA,MV,Gyro\n");
 }
 
 /*
@@ -39,10 +39,10 @@ void Databank::writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistan
 	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
 	fprintf(logfp, "%d,%d,%d,%d,%d\n",time,rundis,rgb,nrgb,RunDistance);
 }
-void Databank::writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance, int MA,int MV){
+void Databank::writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance, int MA,int MV, int Gyro){
 
 	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
-	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d\n",time,rundis,rgb,nrgb,RunDistance,MA,MV);	
+	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,rgb,nrgb,RunDistance,MA,MV,Gyro);	
 }
 
 

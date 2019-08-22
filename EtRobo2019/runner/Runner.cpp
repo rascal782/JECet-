@@ -173,7 +173,8 @@ void Runner::recordLog(int time){
         inspanel->getNaturalTotalRGB(),
         inspanel->getRunDistance(),
         inspanel->getMA(),
-        inspanel->getMV()
+        inspanel->getMV(),
+        inspanel->getGyroImpact()
         );
 }
 
