@@ -25,7 +25,7 @@ private:
     MotorControl* mc;
     TailControl* tc;
     PID* motorPid;
-    int targetRgb = 0; /* 目標RGB値 */
+    int targetRgb = 284; /* 目標RGB値 */
 
 public:
     ControlManager();
@@ -34,7 +34,8 @@ public:
     void wheelInit();
     void balancerInit();
     void running(int forward, int turn, int tailAngle);
-    void running(int forward, int turn, int tailAngle, int totalRgb);
+    void runningL(int forward, int turn, int tailAngle, int totalRgb);
+    void runningR(int forward, int turn, int tailAngle, int totalRgb);
     void noBalanceRun(int forward, int turn, int tailAngle, int totalRgb);
     void stop();
     void setPID(float kp, float ki, float kd);

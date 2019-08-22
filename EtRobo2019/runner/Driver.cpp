@@ -25,15 +25,18 @@ void Driver::start() {
     // TODO ここの処理は新たに作成するコースクラスで実装
     if (runner->getBtCmd() == 1) {
         mCourse = lCourse;
+        runner->setCourse(0);
     }
     else if (runner->getBtCmd() == 2) {
         mCourse = rCourse;
+        runner->setCourse(1);
     }
     else {
         mCourse = dCourse;
     }
     beforeDistance = runner->getDistance();
     beforeClock = clock->now();
+
 }
 
 /**

@@ -14,6 +14,7 @@
 #include "RunningDistance.h"
 #include "SonarDistance.h"
 #include "ImpactSensor.h"
+#include "BatteryCharge.h"
 
 class InstrumentPanel
 {
@@ -23,6 +24,12 @@ private:
     RunningDistance* runDistance;
     SonarDistance* sonarDistance;
     ImpactSensor* impactSensor;
+    BatteryCharge* batteryCharge;
+    int spaceDistance = 0; /*区間距離*/
+    int space = 0;
+
+    int mA;
+    int mV;
 
     int white;  /* 目標RGB値計算用 白 */
     int black;  /* 目標RGB値計算用 黒 */
@@ -35,7 +42,8 @@ public:
     int getTotalRGB();
     void btUpdate();
     void stop();
-    void update();
+    //void update();
+    int update();
     int getRunDistance();
     int getBtCmd();
     int getSonarAlert();
@@ -47,5 +55,7 @@ public:
     int getGreen();
     int getBrue();
     int getNaturalTotalRGB();
+    int getMA();
+    int getMV();
 };
 #endif  // MEASURING_INSTRUMENT_PANEL_H

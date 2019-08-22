@@ -64,14 +64,29 @@ void ControlManager::running(int forward, int turn, int tailAngle) {
  * @param tailAngle 尻尾角度
  * @param totalRgb  目標RGB値
  */
-void ControlManager::running(int forward, int turn, int tailAngle, int totalRgb) {
+void ControlManager::runningR(int forward, int turn, int tailAngle, int totalRgb) {
     turn = motorPid->calcControl(totalRgb - targetRgb) + turn;
     balancer->setCommand(forward, turn);
-    balancer->update(gyroSensor->getAnglerVelocity(), mc->getRMotorAngle(), mc->getLMotorAngle(), (int)ev3_battery_voltage_mV());
-    mc->setPWM(balancer->getPwmLeft(), balancer->getPwmRight());
+    balancer->update(gyroSensor->getAnglerVelocity(), mc->getYMotorAngle(), mc->getXMotorAngle(), (int)ev3_battery_voltage_mV());
+    mc->setPWM(balancer->getPwmRight(), balancer->getPwmLeft());
     tc->setControl(tailAngle);
 }
 
+
+/**
+ * バランス走行
+ * @param forward   前進
+ * @param turn      旋回
+ * @param tailAngle 尻尾角度
+ * @param totalRgb  目標RGB値
+ */
+void ControlManager::runningL(int forward, int turn, int tailAngle, int totalRgb) {
+    turn = motorPid->calcControl(totalRgb - targetRgb) + turn;
+    balancer->setCommand(forward, turn);
+    balancer->update(gyroSensor->getAnglerVelocity(), mc->getYMotorAngle(), mc->getXMotorAngle(), (int)ev3_battery_voltage_mV());
+    mc->setPWM(balancer->getPwmLeft(), balancer->getPwmRight());
+    tc->setControl(tailAngle);
+}
 /**
  * 尻尾走行
  * @param forward   前進
@@ -83,7 +98,7 @@ void ControlManager::noBalanceRun(int forward, int turn, int tailAngle, int tota
     float KRGB = getKRGB(tailAngle);
     turn = motorPid->calcControl(totalRgb - (targetRgb * KRGB)) + turn;
     balancer->setCommand(forward, turn);
-    balancer->update(gyroSensor->getAnglerVelocity(), mc->getRMotorAngle(), mc->getLMotorAngle(), (int)ev3_battery_voltage_mV());
+    balancer->update(gyroSensor->getAnglerVelocity(), mc->getYMotorAngle(), mc->getXMotorAngle(), (int)ev3_battery_voltage_mV());
     if (forward >= 0) {
         mc->setNoBalanceRun(forward, turn);
     }
@@ -144,6 +159,7 @@ float ControlManager::getKRGB(int tailAngle) {
 /*ジャイロセンサの角速度*/
 int ControlManager::getAnglerVelocity(){
     return gyroSensor->getAnglerVelocity();
+<<<<<<< HEAD
 }
 
 /*目標RGB値取得*/
@@ -159,4 +175,6 @@ int ControlManager::getPwmLeft(){
 /*右モータPWM値取得*/
 int ControlManager::getPwmRight(){
     return balancer->getPwmRight();
+=======
+>>>>>>> origin/rascal
 }

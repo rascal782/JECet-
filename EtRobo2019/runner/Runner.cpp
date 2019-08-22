@@ -31,6 +31,7 @@ void Runner::start(int forward, int turn, int tailAngle) {
 
         if (tailTMP != 0) {
             tailAngle += tailTMP;
+            syslog(LOG_NOTICE, "TAIL: %3d\r", tailAngle);
         }
 
         cm->running(forward, turn, tailAngle);
@@ -56,11 +57,18 @@ void Runner::start(int forward, int turn, int tailAngle) {
  * @param tailAngle  尻尾角度
  */
 void Runner::run(int forward, int turn, int tailAngle, float krgb) {
-    inspanel->update();
+    space = inspanel->update();
 
     int totalRGB = inspanel->getTotalRGB() / krgb;
     if (style == 1) {
-        cm->running(forward, turn, tailAngle, totalRGB);
+        //syslog(LOG_NOTICE, "course:%d\n", course);
+        if (course == 0)
+        {
+            cm->runningL(forward, turn, tailAngle, totalRGB);
+        }else{
+            cm->runningR(forward, turn, tailAngle, totalRGB);
+        }
+        
     }
     else {
         cm->noBalanceRun(forward, turn, tailAngle, totalRGB);
@@ -136,6 +144,14 @@ void Runner::setStyle(int style) {
 }
 
 /**
+ * 走行コース選択
+ * @return Course
+ */
+void Runner::setCourse(int course) {
+    this->course=course;
+}
+
+/**
  * ジャイロオフセット設定
  * @param gyroOffset ジャイロオフセット
  */
@@ -164,19 +180,36 @@ void Runner::setRecordFlag(int mode){
  *
 */
 void Runner::recordLog(int time){
+<<<<<<< HEAD
     
+=======
+    // databank->writeLogFile(
+    //     time,
+    //     inspanel->getRunDistance(),
+    //     inspanel->getRed(),
+    //     inspanel->getGreen(),
+    //     inspanel->getBrue(),
+    //     inspanel->getTotalRGB(),
+    //     inspanel->getNaturalTotalRGB()
+    //     //cm->getAngle(),
+    //     //cm->getAnglerVelocity()
+    //     );
+>>>>>>> origin/rascal
     databank->writeLogFile(
         time,
         inspanel->getRunDistance(),
-        inspanel->getRed(),
-        inspanel->getGreen(),
-        inspanel->getBrue(),
         inspanel->getTotalRGB(),
         inspanel->getNaturalTotalRGB(),
+<<<<<<< HEAD
         cm->getTargetRgb(),
         cm->getAnglerVelocity(),
         cm->getPwmLeft(),
         cm->getPwmRight()
+=======
+        inspanel->getRunDistance(),
+        inspanel->getMA(),
+        inspanel->getMV()
+>>>>>>> origin/rascal
         );
 }
 

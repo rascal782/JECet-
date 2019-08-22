@@ -12,32 +12,32 @@
  * コンストラクタ
  */
 MotorControl::MotorControl() {
-    leftMotor   = new Motor(PORT_C);
-    rightMotor  = new Motor(PORT_B);
+    XMotor   = new Motor(PORT_C);
+    YMotor  = new Motor(PORT_B);
 }
 
 /**
  * 初期化
  */
 void MotorControl::init() {
-    leftMotor->reset();
-    rightMotor->reset();
+    XMotor->reset();
+    YMotor->reset();
 }
 
 /**
  * 左モーター回転角度所得
  * @return 左モーター回転角度
  */
-int32_t MotorControl::getLMotorAngle() {
-    return leftMotor->getCount();
+int32_t MotorControl::getXMotorAngle() {
+    return XMotor->getCount();
 }
 
 /**
  * 右モーター回転角度所得
  * @return 右モーター回転角度
  */
-int32_t MotorControl::getRMotorAngle() {
-    return rightMotor->getCount();
+int32_t MotorControl::getYMotorAngle() {
+    return YMotor->getCount();
 }
 
 /**
@@ -47,17 +47,17 @@ int32_t MotorControl::getRMotorAngle() {
  */
 void MotorControl::setPWM(int8_t pwmL, int8_t pwmR) {
     if (pwmL == 0) {
-         leftMotor->stop();
+         XMotor->stop();
     }
     else {
-        leftMotor->setPWM(pwmL);
+        XMotor->setPWM(pwmL);
     }
 
     if (pwmR == 0) {
-         rightMotor->stop();
+         YMotor->stop();
     }
     else {
-        rightMotor->setPWM(pwmR);
+        YMotor->setPWM(pwmR);
     }
 }
 
@@ -65,8 +65,8 @@ void MotorControl::setPWM(int8_t pwmL, int8_t pwmR) {
  * モーター完全停止
  */
 void MotorControl::stop() {
-    leftMotor->reset();
-    rightMotor->reset();
+    XMotor->reset();
+    YMotor->reset();
 }
 
 /**
@@ -75,15 +75,15 @@ void MotorControl::stop() {
  * @param turn    旋回
  */
 void MotorControl::setNoBalanceRun(int forward, int turn) {
-    int pwmL = forward + turn;
-    int pwmR = forward - turn;
+    int pwmX = forward + turn;
+    int pwmY = forward - turn;
 
-    if (pwmL > 100) {
-        pwmL = 100;
+    if (pwmX > 100) {
+        pwmY = 100;
     }
-    if (pwmR > 100) {
-        pwmR = 100;
+    if (pwmX > 100) {
+        pwmY = 100;
     }
 
-    setPWM(pwmL, pwmR);
+    setPWM(pwmX, pwmY);
 }

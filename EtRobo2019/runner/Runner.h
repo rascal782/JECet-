@@ -25,7 +25,12 @@ private:
     int lookupLineC = 0;
     int seesawLine = 0;
     int distanceTmp = 0;
+<<<<<<< HEAD
     bool recordFlag = false;
+=======
+    int course = 0;
+    int space = 0;
+>>>>>>> origin/rascal
 
 public:
     Runner();
@@ -40,7 +45,11 @@ public:
     void setPID(float kp, float ki, float kd);
     void setStyle(int style);
     void setGyroOffset(int gyroOffset);
+<<<<<<< HEAD
     void setRecordFlag(int mode);
+=======
+    void setCourse(int course);
+>>>>>>> origin/rascal
     void recordLog(int time);
     void stop();
 };

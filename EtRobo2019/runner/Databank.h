@@ -16,6 +16,7 @@ private:
 public:
 	Databank();
 	void openLogFile();
+<<<<<<< HEAD
 	void writeLogFile(int time,
 					  int rundis,
 					  int r,
@@ -28,5 +29,10 @@ public:
 					  int lpwm,
 					  int rpwm
 					  );
+=======
+//	void writeLogFile(int time,int rundis,int r,int g,int b,int trgb,int ntrgb);
+	void writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance);
+	void writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance, int MA,int MV);
+>>>>>>> origin/rascal
 	void closeLogFile();
 };
