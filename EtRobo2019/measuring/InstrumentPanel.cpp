@@ -17,6 +17,7 @@ InstrumentPanel::InstrumentPanel() {
     runDistance = new RunningDistance();
     sonarDistance = new SonarDistance();
     impactSensor = new ImpactSensor();
+    batteryCharge = new BatteryCharge();
 }
 
 /**
@@ -205,4 +206,10 @@ int InstrumentPanel::getBrue(){
 
 int InstrumentPanel::getNaturalTotalRGB(){
     return color->getNaturalTotalRGB();
+}
+int InstrumentPanel::getMA(){
+    return batteryCharge->getMA();
+}
+int InstrumentPanel::getMV(){
+    return batteryCharge->getMV();
 }

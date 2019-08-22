@@ -171,10 +171,9 @@ void Runner::recordLog(int time){
         inspanel->getRunDistance(),
         inspanel->getTotalRGB(),
         inspanel->getNaturalTotalRGB(),
-        //cm->getAngle(),
-        //cm->getAnglerVelocity()
-        inspanel->getRunDistance()
-        ,space
+        inspanel->getRunDistance(),
+        inspanel->getMA(),
+        inspanel->getMV()
         );
 }
 

@@ -21,7 +21,7 @@ void Databank::openLogFile(){
 	logfp = fopen(buf,"w");
 	//logfp = fopen("log.csv","w");
 	//fprintf(logfp, "TIME,RUNDIS,R,G,B,RGB,NRGB,ANG,ANGV\n");
-	fprintf(logfp, "TIME,RUNDIS,R,G,B,RGB,NRGB\n");
+	fprintf(logfp, "TIME,RUNDIS,RGB,NRGB,RunDistance,MA,MV\n");
 }
 
 /*
@@ -29,20 +29,20 @@ void Databank::openLogFile(){
 **時間,走行距離,R,G,B,RGB合計値,自然RGB合計値,ジャイロ角位置,ジャイロ角速度
 */
 //int ang,int angv
-void Databank::writeLogFile(int time,int rundis,int r,int g,int b,int rgb,int nrgb){
+// void Databank::writeLogFile(int time,int rundis,int r,int g,int b,int rgb,int nrgb){
 
-	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
-	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb);
-}
+// 	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
+// 	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb);
+// }
 void Databank::writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance){
 
 	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
 	fprintf(logfp, "%d,%d,%d,%d,%d\n",time,rundis,rgb,nrgb,RunDistance);
 }
-void Databank::writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance, int space){
+void Databank::writeLogFile(int time,int rundis ,int rgb,int nrgb, int RunDistance, int MA,int MV){
 
 	//fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d\n",time,rundis,r,g,b,rgb,nrgb,ang,angv);
-	fprintf(logfp, "%d,%d,%d,%d,%d,%d\n",time,rundis,rgb,nrgb,RunDistance,space);	
+	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d\n",time,rundis,rgb,nrgb,RunDistance,MA,MV);	
 }
 
 
