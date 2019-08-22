@@ -45,7 +45,9 @@ void Runner::start(int forward, int turn, int tailAngle) {
     cm->gyroInit();
     cm->wheelInit();
     cm->balancerInit();
-    databank->openLogFile();
+    if(recordFlag){
+        databank->openLogFile();
+    }
 }
 
 /**
