@@ -12,9 +12,6 @@
 #include "Runner.h"
 #include "../scenario/Course.h"
 #include "Clock.h"
-#include <vector>
-
-using namespace std;
 
 class Driver
 {

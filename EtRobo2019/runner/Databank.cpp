@@ -21,15 +21,12 @@ void Databank::openLogFile(){
 	for(int i = 1; i <= 10 ; i++){
 		snprintf(buf,20,"%s%d%s","logdata/log",i,".csv");//文字列結合
 		logfp = fopen(buf,"r");//ファイルオープン（読み取りモード）
-
+		fclose(logfp);
 		if(logfp == NULL){//ファイルが存在するか
-			fclose(logfp);
 			break;//存在しなければbreak
 		}
-
-		fclose(logfp);
 	}
-	
+
 
 	logfp = fopen(buf,"w");//ファイル作成（書き込みモード）
 
@@ -54,7 +51,6 @@ void Databank::writeLogFile(int time,
 							int rpwm
 							)
 {
-	
 	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
 		time,
 		rundis,

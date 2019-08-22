@@ -54,7 +54,7 @@ void Driver::exec() {
         runner->stop();
     }
 
-    if(clock->now() - logBeforeClock >= 50){
+    if(clock->now() - logBeforeClock >= 50 && runner->getRecordFlag()){
         runner->recordLog(clock->now());
         logBeforeClock = clock->now();
     }
