@@ -14,7 +14,6 @@
 Runner::Runner() {
     cm = new ControlManager();
     inspanel = new InstrumentPanel();
-
     databank = new Databank();
 }
 
@@ -35,6 +34,8 @@ void Runner::start(int forward, int turn, int tailAngle) {
         }
 
         cm->running(forward, turn, tailAngle);
+
+        this->setRecordFlag(this->getBtCmd());
 
         if (inspanel->pushButton()) {
             break;
@@ -109,6 +110,14 @@ int Runner::getBtCmd() {
 }
 
 /**
+ * recordFlag取得
+ * @return recordFlag
+ */
+bool Runner::getRecordFlag(){
+    return this->recordFlag;
+}
+
+/**
  * PID係数設定
  * @param kp 係数P
  * @param ki 係数I
@@ -135,10 +144,27 @@ void Runner::setGyroOffset(int gyroOffset) {
 }
 
 /**
-
- *走行情報記録
+ * ログフラグ設定
+ * @param flag フラグ
  */
+void Runner::setRecordFlag(int mode){
+    bool flag = false;
+    if(mode == 't'){
+        flag = true;
+        syslog(LOG_NOTICE,"Record Mode ON");
+    }else if(mode == 'f'){
+        flag = false;
+        syslog(LOG_NOTICE,"Record Mode OFF");
+    }
+    this->recordFlag = flag;
+}
+
+/*
+ *走行情報記録
+ *
+*/
 void Runner::recordLog(int time){
+    
     databank->writeLogFile(
         time,
         inspanel->getRunDistance(),
@@ -146,9 +172,11 @@ void Runner::recordLog(int time){
         inspanel->getGreen(),
         inspanel->getBrue(),
         inspanel->getTotalRGB(),
-        inspanel->getNaturalTotalRGB()
-        //cm->getAngle(),
-        //cm->getAnglerVelocity()
+        inspanel->getNaturalTotalRGB(),
+        cm->getTargetRgb(),
+        cm->getAnglerVelocity(),
+        cm->getPwmLeft(),
+        cm->getPwmRight()
         );
 }
 

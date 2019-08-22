@@ -52,7 +52,11 @@ int PID::calcControl(int nowValue) {
 
     pControl = kp * diff[1];
     iControl = ki * integral;
+<<<<<<< HEAD
     dControl = kd * ((diff[1] - diff[0])/4.0);
+=======
+    dControl = kd * (diff[1] - diff[0]) / 4.0;
+>>>>>>> origin/databank
 
     total = pControl + iControl + dControl;
 

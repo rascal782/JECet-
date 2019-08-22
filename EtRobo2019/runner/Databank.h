@@ -7,8 +7,8 @@
  ******************************************************************************
  **/
 #pragma once
-#include <stdio.h>
-
+#include "ev3api.h"
+#include <string.h>
 class Databank
 {
 private:
@@ -16,6 +16,17 @@ private:
 public:
 	Databank();
 	void openLogFile();
-	void writeLogFile(int time,int rundis,int r,int g,int b,int trgb,int ntrgb);
+	void writeLogFile(int time,
+					  int rundis,
+					  int r,
+					  int g,
+					  int b,
+					  int rgb,
+					  int nrgb,
+					  int trgb,
+					  int angv,
+					  int lpwm,
+					  int rpwm
+					  );
 	void closeLogFile();
 };
