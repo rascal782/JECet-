@@ -152,12 +152,13 @@ void Runner::setRecordFlag(int mode){
     bool flag = false;
     if(mode == 't'){
         flag = true;
-        syslog(LOG_NOTICE,"Record Mode ON");
+        syslog(LOG_NOTICE,"Record Mode ON\r");
     }else if(mode == 'f'){
         flag = false;
-        syslog(LOG_NOTICE,"Record Mode OFF");
+        syslog(LOG_NOTICE,"Record Mode OFF\r");
     }
     this->recordFlag = flag;
+    inspanel->setBtCmd(0);
 }
 
 /*
