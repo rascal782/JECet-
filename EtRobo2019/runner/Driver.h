@@ -91,6 +91,7 @@ private:
     int beforeDistance;
     int beforeClock;
     int courseNumber = 0;
+    int logBeforeClock = 0;
 
 public:
     Driver();
