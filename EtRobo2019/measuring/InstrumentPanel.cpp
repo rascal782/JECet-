@@ -127,7 +127,6 @@ int InstrumentPanel::update() {
         space = runDistance->getRunDistance() - spaceDistance;
         spaceDistance = runDistance->getRunDistance();
     }
-    syslog(LOG_NOTICE, "space: %d", space);
     return space;
 }
 

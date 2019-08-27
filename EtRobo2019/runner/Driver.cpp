@@ -28,10 +28,6 @@ void Driver::start() {
         mCourse = lCourse;
         runner->setCourse(0);
     }
-    else if (runner->getBtCmd() == 2) {
-        mCourse = rCourse;
-        runner->setCourse(1);
-    }
     else {
         mCourse = dCourse;
     }
@@ -57,7 +53,7 @@ void Driver::exec() {
     if ((mCourse[courseNumber].getDis() + mCourse[courseNumber].getTime() + mCourse[courseNumber].getImpact() + mCourse[courseNumber].getSonarDis()) == 0) {
         runner->stop();
     }
-    runner->recordLog(clock->now());
+    //runner->recordLog(clock->now());
 }
 
 /**
