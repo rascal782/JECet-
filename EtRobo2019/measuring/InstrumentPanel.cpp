@@ -29,12 +29,13 @@ int InstrumentPanel::pushColorButton() {
     if (sswitch->pushColorButton() == 1) {
         color->update();
         white = color->getNaturalTotalRGB();
+        syslog(LOG_NOTICE, "WHITE: %d\r", getNaturalTotalRGB());
     }
     if (sswitch->pushColorButton() == 2) {
         color->update();
         black = color->getNaturalTotalRGB();
+        syslog(LOG_NOTICE, "BLACK: %d\r", getNaturalTotalRGB());
     }
-
     target = (white + black) / 2;
 
     if (sswitch->pushColorButton() != 0) {

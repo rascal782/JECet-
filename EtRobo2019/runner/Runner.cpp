@@ -154,7 +154,6 @@ void Runner::recordLog(int time){
         cm->getPwmLeft(),
         cm->getPwmRight()
         );
-    syslog(LOG_NOTICE, "RUNDIS: %d\r", inspanel->getRunDistance());
 }
 
 
