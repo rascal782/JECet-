@@ -60,13 +60,7 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
 
     int totalRGB = inspanel->getTotalRGB() / krgb;
     if (style == 1) {
-        if (course == 0)
-        {
-            cm->runningL(forward, turn, tailAngle, totalRGB);
-        }else{
-            cm->runningR(forward, turn, tailAngle, totalRGB);
-        }
-        
+        cm->runningL(forward, turn, tailAngle, totalRGB);
     }
     else {
         cm->noBalanceRun(forward, turn, tailAngle, totalRGB);
@@ -74,6 +68,7 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
     if (totalRGB <= 7 || inspanel->getBtCmd() == 6) {
         stop();
     }
+    recordLog(clock->now());
 }
 
 /**
