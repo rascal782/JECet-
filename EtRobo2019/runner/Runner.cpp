@@ -68,7 +68,6 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
     if (totalRGB <= 7 || inspanel->getBtCmd() == 6) {
         stop();
     }
-    recordLog(clock->now());
 }
 
 /**

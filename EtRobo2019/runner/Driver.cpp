@@ -53,7 +53,7 @@ void Driver::exec() {
     if ((mCourse[courseNumber].getDis() + mCourse[courseNumber].getTime() + mCourse[courseNumber].getImpact() + mCourse[courseNumber].getSonarDis()) == 0) {
         runner->stop();
     }
-    //runner->recordLog(clock->now());
+    runner->recordLog(clock->now());
 }
 
 /**
