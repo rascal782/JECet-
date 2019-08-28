@@ -23,11 +23,10 @@ Driver::Driver() {
  */
 void Driver::start() {
     runner->start(0, 0, 94);
-    
+    /*
     if (runner->getBtCmd() == 1) {
         mCourse = lCourse;
         runner->setCourse(0);
-
     }
     else if (runner->getBtCmd() == 2) {
         mCourse = rCourse;
@@ -36,7 +35,13 @@ void Driver::start() {
     else {
         mCourse = dCourse;
     }
-    
+    */
+
+    int mode = runner->getBtCmd();
+    syslog(LOG_NOTICE, "BtCmd: %d\r", mode);
+    mCourse = selectCourse[mode - 1];
+    runner->setCourse(mode - 1);
+
     beforeDistance = runner->getDistance();
     beforeClock = clock->now();
 

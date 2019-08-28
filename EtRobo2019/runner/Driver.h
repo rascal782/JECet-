@@ -70,6 +70,9 @@ private:
         {     0,    0,  0,  0,       0,  0, 81,   0, 0.0500F, 0.0000F, 0.0000F, 1.00F, 0 },  //  完全停止
         {     0,    0,  0,  0,       0,  0, 81,   0, 0.0000F, 0.0000F, 0.0000F, 1.00F, 0 }   //  完全停止用終端配列
     };
+
+    Course* selectCourse[3]{lCourse,rCourse,dCourse};
+
     Clock* clock;
     int beforeDistance;
     int beforeClock;
