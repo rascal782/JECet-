@@ -18,9 +18,6 @@ public:
 	void openLogFile();
 	void writeLogFile(int time,
 					  int rundis,
-					  int r,
-					  int g,
-					  int b,
 					  int rgb,
 					  int nrgb,
 					  int trgb,

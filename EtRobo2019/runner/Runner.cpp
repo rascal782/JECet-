@@ -7,6 +7,9 @@
  ******************************************************************************
  **/
 #include "Runner.h"
+#include "Clock.h"
+
+using namespace ev3api;
 
 /**
  * コンストラクタ
@@ -65,10 +68,10 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
         if (course == 0)
         {
             cm->runningL(forward, turn, tailAngle, totalRGB);
-            syslog(LOG_NOTICE, "courseR:%d\n\r,%d\n\r,%d\n\r,%d\n\r,%d\n\r", course,forward, turn, tailAngle, totalRGB);
+            //syslog(LOG_NOTICE, "courseR:%d\n\r,%d\n\r,%d\n\r,%d\n\r,%d\n\r", course,forward, turn, tailAngle, totalRGB);
         }else{
             cm->runningR(forward, turn, tailAngle, totalRGB);
-            syslog(LOG_NOTICE, "courseL:%d\n\r,%d\n\r,%d\n\r,%d\n\r,%d\n\r", course,forward, turn, tailAngle, totalRGB);
+            //syslog(LOG_NOTICE, "courseL:%d\n\r,%d\n\r,%d\n\r,%d\n\r,%d\n\r", course,forward, turn, tailAngle, totalRGB);
         }
         
     }
@@ -163,19 +166,21 @@ void Runner::setGyroOffset(int gyroOffset) {
 
 /**
  * ログフラグ設定
- * @param flag フラグ
+ * @param recordFlag フラグ
  */
 void Runner::setRecordFlag(int mode){
-    bool flag = false;
+    Clock clock;
     if(mode == 't'){
-        flag = true;
+        this->recordFlag = true;
         syslog(LOG_NOTICE,"Record Mode ON\r");
+        inspanel->setBtCmd(0);
+        clock.sleep(1);
     }else if(mode == 'f'){
-        flag = false;
+        this->recordFlag = false;
         syslog(LOG_NOTICE,"Record Mode OFF\r");
+        inspanel->setBtCmd(0);
+        clock.sleep(1);
     }
-    this->recordFlag = flag;
-    inspanel->setBtCmd(0);
 }
 
 /*
@@ -187,9 +192,6 @@ void Runner::recordLog(int time){
     databank->writeLogFile(
         time,
         inspanel->getRunDistance(),
-        inspanel->getRed(),
-        inspanel->getGreen(),
-        inspanel->getBrue(),
         inspanel->getTotalRGB(),
         inspanel->getNaturalTotalRGB(),
         cm->getTargetRgb(),

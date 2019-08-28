@@ -31,7 +31,7 @@ void Databank::openLogFile(){
 	logfp = fopen(buf,"w");//ファイル作成（書き込みモード）
 
 	//各列名
-	fprintf(logfp, "TIME,RUNDIS,R,G,B,RGB,NRGB,TRGB,ANGV,LPWM,RPWM\n");
+	fprintf(logfp, "TIME,RUNDIS,RGB,NRGB,TRGB,ANGV,LPWM,RPWM\n");
 }
 
 /*
@@ -40,9 +40,6 @@ void Databank::openLogFile(){
 */
 void Databank::writeLogFile(int time,
 							int rundis,
-							int r,
-							int g,
-							int b,
 							int rgb,
 							int nrgb,
 							int trgb,
@@ -51,12 +48,9 @@ void Databank::writeLogFile(int time,
 							int rpwm
 							)
 {
-	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
+	fprintf(logfp, "%d,%d,%d,%d,%d,%d,%d,%d\n",
 		time,
 		rundis,
-		r,
-		g,
-		b,
 		rgb,
 		nrgb,
 		trgb,

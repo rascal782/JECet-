@@ -43,7 +43,7 @@ public:
      * @param krgb
      * @param style
      */
-    Course(int dis, int time, int impact, int sonarDis, int forward, int turn, int tailAngle, int gyroOffset, float kp, float ki, float kd, float krgb, int style) {
+    Course(int dis, int time, int impact, int sonarDis, int forward, int turn, int tailAngle, int gyroOffset, float kp, float ki, float kd, float krgb, int style){
         this->dis = dis;
         this->time = time;
         this->impact = impact;
@@ -58,6 +58,10 @@ public:
         this->krgb = krgb;
         this->style = style;
     }
+
+    /*デフォルトコンストラクタ*/
+    Course(void){}
+
     int getDis() {
         return dis;
     }
@@ -96,6 +100,47 @@ public:
     }
     int getStyle() {
         return style;
+    }
+
+    /*セッタ*/
+    void setDis(int dis) {
+        this->dis = dis;
+    }
+    void setTime(int time) {
+        this->time = time;
+    }
+    void setImpact(int impact) {
+        this->impact = impact;
+    }
+    void setSonarDis(int sonarDis) {
+        this->sonarDis = sonarDis;
+    }
+    void setForward(int forward) {
+        this->forward = forward;
+    }
+    void setTurn(int turn) {
+        this->turn = turn;
+    }
+    void setTailAngle(int tailAngle) {
+        this->tailAngle = tailAngle;
+    }
+    void setGyroOffset(int gyroOffset) {
+        this->gyroOffset = gyroOffset;
+    }
+    void setP(float kp) {
+        this->kp = kp;
+    }
+    void setI(float ki) {
+        this->ki = ki;
+    }
+    void setD(float kd) {
+        this->kd = kd;
+    }
+    void setKrgb(float krgb) {
+        this->krgb = krgb;
+    }
+    void setStyle(int style) {
+        this->style = style;
     }
 };
 

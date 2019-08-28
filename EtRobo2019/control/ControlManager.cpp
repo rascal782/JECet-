@@ -79,7 +79,7 @@ void ControlManager::runningR(int forward, int turn, int tailAngle, int totalRgb
  * @param turn      旋回
  * @param tailAngle 尻尾角度
  * @param totalRgb  目標RGB値
- */
+ **/
 void ControlManager::runningL(int forward, int turn, int tailAngle, int totalRgb) {
     turn = motorPid->calcControl(totalRgb - targetRgb) + turn;
     balancer->setCommand(forward, turn);
@@ -87,6 +87,8 @@ void ControlManager::runningL(int forward, int turn, int tailAngle, int totalRgb
     mc->setPWM(balancer->getPwmLeft(), balancer->getPwmRight());
     tc->setControl(tailAngle);
 }
+
+
 /**
  * 尻尾走行
  * @param forward   前進

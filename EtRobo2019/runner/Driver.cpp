@@ -22,7 +22,7 @@ Driver::Driver() {
  */
 void Driver::start() {
     runner->start(0, 0, 94);
-    // TODO ここの処理は新たに作成するコースクラスで実装
+    
     if (runner->getBtCmd() == 1) {
         mCourse = lCourse;
         runner->setCourse(0);
@@ -32,8 +32,25 @@ void Driver::start() {
         runner->setCourse(1);
     }
     else {
-        mCourse = dCourse;
+        syslog(LOG_NOTICE, "Course Load Fail\n\r");
+        while(1){
+        }
+        //mCourse = dCourse;
     }
+    /*
+    if (runner->getBtCmd() == 1) {
+        mCourse = lCourse;
+    }
+    else if (runner->getBtCmd() == 2) {
+        mCourse = rCourse;
+    }
+    else {
+        //mCourse = dCourse;
+        syslog(LOG_NOTICE, "Course Load Fail\n\r");
+        while(1){
+        }
+    }
+    */
     beforeDistance = runner->getDistance();
     beforeClock = clock->now();
 
