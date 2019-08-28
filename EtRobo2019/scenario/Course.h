@@ -43,7 +43,7 @@ public:
      * @param krgb
      * @param style
      */
-    Course(int dis, int time, int impact, int sonarDis, int forward, int turn, int tailAngle, int gyroOffset, float kp, float ki, float kd, float krgb, int style) {
+    Course(int dis, int time, int impact, int sonarDis, int forward, int turn, int tailAngle, int gyroOffset, float kp, float ki, float kd, float krgb, int style){
         this->dis = dis;
         this->time = time;
         this->impact = impact;
@@ -58,6 +58,10 @@ public:
         this->krgb = krgb;
         this->style = style;
     }
+
+    /*デフォルトコンストラクタ*/
+    Course(void){}
+
     int getDis() {
         return dis;
     }

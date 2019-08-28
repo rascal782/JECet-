@@ -39,8 +39,8 @@ int InstrumentPanel::pushColorButton() {
     target = (white + black) / 2;
 
     if (sswitch->pushColorButton() != 0) {
+        syslog(LOG_NOTICE,"white:%d\n\rblack:%d\n\rtotal:%d\n\r",white,black,target);
         sswitch->setBtCmd(0);
-        syslog(LOG_NOTICE, "color: %3d   B: %3d   W: %3d\r", target, black, white);
     }
 
     return target;

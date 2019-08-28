@@ -23,14 +23,20 @@ Driver::Driver() {
  */
 void Driver::start() {
     runner->start(0, 0, 94);
-    // TODO ここの処理は新たに作成するコースクラスで実装
+    
     if (runner->getBtCmd() == 1) {
         mCourse = lCourse;
         runner->setCourse(0);
+
+    }
+    else if (runner->getBtCmd() == 2) {
+        mCourse = rCourse;
+        runner->setCourse(1);
     }
     else {
         mCourse = dCourse;
     }
+    
     beforeDistance = runner->getDistance();
     beforeClock = clock->now();
 
@@ -53,7 +59,11 @@ void Driver::exec() {
     if ((mCourse[courseNumber].getDis() + mCourse[courseNumber].getTime() + mCourse[courseNumber].getImpact() + mCourse[courseNumber].getSonarDis()) == 0) {
         runner->stop();
     }
-    runner->recordLog(clock->now());
+    if(clock->now() - logBeforeClock >= 50 && runner->getRecordFlag()){
+        runner->recordLog(clock->now());
+        logBeforeClock = clock->now();
+    }
+
 }
 
 /**

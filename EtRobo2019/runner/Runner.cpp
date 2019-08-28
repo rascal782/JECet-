@@ -7,6 +7,9 @@
  ******************************************************************************
  **/
 #include "Runner.h"
+#include "Clock.h"
+
+using namespace ev3api;
 
 /**
  * コンストラクタ
@@ -14,8 +17,7 @@
 Runner::Runner() {
     cm = new ControlManager();
     inspanel = new InstrumentPanel();
-
-    //databank = new Databank();
+    databank = new Databank();
 }
 
 /**
@@ -42,11 +44,14 @@ void Runner::start(int forward, int turn, int tailAngle) {
         }
 
         cm->setTargetRgb(inspanel->pushColorButton());
+        this->setRecordFlag(this->getBtCmd());
     }
     cm->gyroInit();
     cm->wheelInit();
     cm->balancerInit();
-    databank->openLogFile();
+    if(recordFlag){
+        databank->openLogFile();
+    }
 }
 
 /**
@@ -60,7 +65,15 @@ void Runner::run(int forward, int turn, int tailAngle, float krgb) {
 
     int totalRGB = inspanel->getTotalRGB() / krgb;
     if (style == 1) {
-        cm->runningL(forward, turn, tailAngle, totalRGB);
+        //syslog(LOG_NOTICE, "course:%d\n", course);
+        if (course == 0)
+        {
+            cm->runningL(forward, turn, tailAngle, totalRGB);
+            //syslog(LOG_NOTICE, "courseR:%d\n\r,%d\n\r,%d\n\r,%d\n\r,%d\n\r", course,forward, turn, tailAngle, totalRGB);
+        }else{
+            cm->runningR(forward, turn, tailAngle, totalRGB);
+            //syslog(LOG_NOTICE, "courseL:%d\n\r,%d\n\r,%d\n\r,%d\n\r,%d\n\r", course,forward, turn, tailAngle, totalRGB);
+        }
     }
     else {
         cm->noBalanceRun(forward, turn, tailAngle, totalRGB);
@@ -110,6 +123,14 @@ int Runner::getBtCmd() {
 }
 
 /**
+ * recordFlag取得
+ * @return recordFlag
+ */
+bool Runner::getRecordFlag(){
+    return this->recordFlag;
+}
+
+/**
  * PID係数設定
  * @param kp 係数P
  * @param ki 係数I
@@ -144,22 +165,55 @@ void Runner::setGyroOffset(int gyroOffset) {
 }
 
 /**
+ * ログフラグ設定
+ * @param recordFlag フラグ
+ */
+void Runner::setRecordFlag(int mode){
+    Clock clock;
+    if(mode == 't'){
+        this->recordFlag = true;
+        syslog(LOG_NOTICE,"Record Mode ON\r");
+        inspanel->setBtCmd(0);
+        clock.sleep(1);
+    }else if(mode == 'f'){
+        this->recordFlag = false;
+        syslog(LOG_NOTICE,"Record Mode OFF\r");
+        inspanel->setBtCmd(0);
+        clock.sleep(1);
+    }
+}
 
- *走行情報記録
+/*
+ *走行情報記録1
  */
 void Runner::recordLog(int time){
     databank->writeLogFile(
         time,
         inspanel->getRunDistance(),
         inspanel->getTotalRGB(),
-        inspanel->getNaturalTotalRGB(),
-        inspanel->getRunDistance(),
-        inspanel->getMA(),
-        inspanel->getMV(),
-        inspanel->getGyroImpact()
+        cm->getTargetRgb(),
+        cm->getAnglerVelocity(),
+        cm->getPwmLeft(),
+        cm->getPwmRight()
         );
 }
 
+
+/*
+ *走行情報記録2
+ */
+// void Runner::recordLog(int time){
+//     databank->writeLogFile(
+//         time,
+//         inspanel->getRunDistance(),
+//         inspanel->getTotalRGB(),
+//         inspanel->getNaturalTotalRGB(),
+//         inspanel->getRunDistance(),
+//         inspanel->getMA(),
+//         inspanel->getMV(),
+//         inspanel->getGyroImpact()
+//         );
+// }
 
 /**
  * 停止

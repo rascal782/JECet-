@@ -74,6 +74,7 @@ private:
     int beforeDistance;
     int beforeClock;
     int courseNumber = 0;
+    int logBeforeClock = 0;
 
 public:
     Driver();
@@ -81,6 +82,5 @@ public:
     void exec();
     int courseChange();
     void btUpdate();
-
 };
 #endif  // RUNNER_DRIVER_H

@@ -105,6 +105,12 @@ void StartSwitch::btUpdate() {
         case ']':
             mBtCmd = ']';
             break;
+        case 't':
+            mBtCmd = 't';
+            break;
+        case 'f':
+            mBtCmd = 'f';
+            break;
         case '\r':
         case '9':
             mBtCmd = '\r';

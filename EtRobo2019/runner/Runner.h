@@ -25,6 +25,7 @@ private:
     int lookupLineC = 0;
     int seesawLine = 0;
     int distanceTmp = 0;
+    bool recordFlag = false;
     int course = 0;
     int space = 0;
 
@@ -37,9 +38,11 @@ public:
     int getGyroImpact();
     int getSonarDis();
     int getBtCmd();
+    bool getRecordFlag();
     void setPID(float kp, float ki, float kd);
     void setStyle(int style);
     void setGyroOffset(int gyroOffset);
+    void setRecordFlag(int mode);
     void setCourse(int course);
     void recordLog(int time);
     void stop();

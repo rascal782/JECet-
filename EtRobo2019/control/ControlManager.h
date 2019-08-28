@@ -42,7 +42,10 @@ public:
     void setTargetRgb(int targetRgb);
     void setGyroOffset(int gyroOffset);
     float getKRGB(int tailAngle);
-    //int getAngle();
     int getAnglerVelocity();
+    int getTargetRgb();
+    int getPwmLeft();
+    int getPwmRight();
+
 };
 #endif  // CONTROL_CONTROL_MANAGER_H

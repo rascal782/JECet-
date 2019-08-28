@@ -79,7 +79,7 @@ void ControlManager::runningR(int forward, int turn, int tailAngle, int totalRgb
  * @param turn      旋回
  * @param tailAngle 尻尾角度
  * @param totalRgb  目標RGB値
- */
+ **/
 void ControlManager::runningL(int forward, int turn, int tailAngle, int totalRgb) {
     turn = motorPid->calcControl(totalRgb - targetRgb) + turn;
     balancer->setCommand(forward, turn);
@@ -87,6 +87,8 @@ void ControlManager::runningL(int forward, int turn, int tailAngle, int totalRgb
     mc->setPWM(balancer->getPwmLeft(), balancer->getPwmRight());
     tc->setControl(tailAngle);
 }
+
+
 /**
  * 尻尾走行
  * @param forward   前進
@@ -156,15 +158,22 @@ float ControlManager::getKRGB(int tailAngle) {
     return (102.0F + ((-3.8F) * diff) + (0.038F * diff * diff)) / 100.0F;
 }
 
-
-/*ジャイロセンサの角位置
-不具合が出たので使用しない
-int ControlManager::getAngle(){
-    return gyroSensor->getAngle();
-}
-*/
-
 /*ジャイロセンサの角速度*/
 int ControlManager::getAnglerVelocity(){
     return gyroSensor->getAnglerVelocity();
+}
+
+/*目標RGB値取得*/
+int ControlManager::getTargetRgb(){
+    return this->targetRgb;
+}
+
+/*左モータPWM値取得*/
+int ControlManager::getPwmLeft(){
+    return balancer->getPwmLeft();
+}
+
+/*右モータPWM値取得*/
+int ControlManager::getPwmRight(){
+    return balancer->getPwmRight();
 }
